@@ -21,7 +21,7 @@ public class UserDashboardGui
 	private final int BUTTON_HEIGHT = 25;
 	private int userDebt = -150;
 	private int newUserDebt, userPayment;
-	
+	 
 	private ButtonListener trackButton = new ButtonListener();
 	
 	public static void main(String[] args) 

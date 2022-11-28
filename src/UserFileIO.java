@@ -21,7 +21,7 @@ public class UserFileIO
 	{
 		
 	}
-	
+	 
 	UserFileIO(String newName, int newDOB, String newUsername, String newPassword, String newEmail, String newAddress,String newNumber, String newInsurance, String newSecurityAnswer)
 	{
 		name = newName;

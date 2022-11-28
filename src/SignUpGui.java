@@ -9,7 +9,7 @@ import javax.swing.*;
 //import javax.swing.SpringLayout;
 
 public class SignUpGui
-{
+{ 
 	private JFrame frame;
 	private JPanel panel;
 	//nameText = first and last name
