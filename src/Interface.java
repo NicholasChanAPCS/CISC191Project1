@@ -46,6 +46,7 @@ public class Interface
 				    correctInput = false;
 				}
 			}while(correctInput == false);
+			
 			//new user interface
 			if(userType == 1) 
 			{
@@ -82,10 +83,11 @@ public class Interface
 					    input.next();
 					}		
 				}while(userInput == false);
+				
 				input.nextLine();
 				System.out.println("Create username: ");
 					do 
-					{		
+					{
 						user = input.nextLine();
 						if(Client.checkUsername(user) == true)
 						{
@@ -93,6 +95,7 @@ public class Interface
 							user = input.next();
 						}
 					}while(Client.checkUsername(user) == false);
+					
 				input.nextLine();
 				System.out.println("Create password: ");
 			    password = input.nextLine();
@@ -109,6 +112,7 @@ public class Interface
 						System.out.println("Invalid format");		
 						}
 				}while(!correctFormat);
+				
 				System.out.println("Enter insurance. Enter none if you don't have any: ");
 				insurance = input.nextLine();
 				System.out.println("Please respond to security question: What is your favorite food: ");
