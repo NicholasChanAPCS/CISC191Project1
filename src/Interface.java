@@ -1,11 +1,7 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
  
 
 public class Interface
@@ -86,7 +82,6 @@ public class Interface
 				
 				input.nextLine();
 				System.out.println("Create username: ");
-                boolean exists = true;
                 do
                 {
                     user = input.nextLine();

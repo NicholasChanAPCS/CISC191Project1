@@ -1,14 +1,5 @@
 import java.io.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-//import java.io.FileOutputStream;
-//import java.io.IOException;
-import java.io.ObjectInputStream;
-//import java.io.ObjectOutputStream;
-//import java.io.Serializable;
-import java.util.ArrayList;
-
-public class Client implements Serializable
+public class Client 
 {
 	private static String name;
 	private static int DOB;
@@ -20,8 +11,6 @@ public class Client implements Serializable
 	private static String insurance; //code boolean to check if has insurance and different to return insurance has, ask for insurance in scanner?
 	private static String securityAnswer;
 	public static int balance = 0;
-	public static ArrayList<String> appointments = new ArrayList<String>();
-	public static ArrayList<String> usernames  = new ArrayList<String>();
 	
 	Client()
 	{
