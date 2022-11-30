@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>119</y>
+      <w>287</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>Client
+--
+Name(first and last): String
+DOB: int
+Username: String
+Password: String
+Email: String
+Address: String
+Phone number: String
+Insurance: String
+Security Answer: String
+Balance: int
+--
+setName(): void
+setDOB(): void
+SetUsername(): void
+setPassword(): void
+setEmail(): void
+setAddress(): void
+setPhoneNumber(): void
+setInsurance(): void
+setSecurityAnswer(): void
+setBalance(): void
+getName(): String
+getDOB(): int
+getUsername(): String
+getPassword(): String
+getEmail(): String
+getAddress(): String
+getPhoneNumber(): String
+getInsurance(): String
+getSecurityAnswer(): String
+getBalance(): int
+toString(): String
+--
+Responsibilities
+- Construct a client
+- Set or change client info
+- Print out client info</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>133</x>
+      <y>588</y>
+      <w>175</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Purchase
+--
+advil: int
+medical tape: int
+acetaminophen: int
+asprin: int
+rubbing alcohol: int
+inhaler: int
+epipen: int
+band aids: int
+--
+buy(): void
+--
+- Allows clients to buy items add the 
+balance will be added to their account</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>217</x>
+      <y>532</y>
+      <w>56</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>399</x>
+      <y>595</y>
+      <w>147</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Billing
+--
+payBalance() : void
+balanceDue(): int
+addToBalance(): void
+subtractFromBalance(): void
+--
+allows clients to see how much
+they owe and make payments</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1183</x>
+      <y>182</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>455</x>
+      <y>532</y>
+      <w>42</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1183</x>
+      <y>0</y>
+      <w>133</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;20.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1085</x>
+      <y>28</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>35</x>
+      <y>119</y>
+      <w>147</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>interface
+--
+-reads user input and executes commands
+-checks if client</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>175</x>
+      <y>147</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>623</y>
+      <w>98</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;40.0;120.0;10.0</additional_attributes>
+  </element>
+</diagram>
