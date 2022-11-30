@@ -49,12 +49,19 @@ public class UserFileIO
 	{
 		try
 		{
-			FileOutputStream f = new FileOutputStream(new File(username + ".txt"));
-			ObjectOutputStream o = new ObjectOutputStream(f);
-			o.writeObject(client);
-			o.flush();
-			o.close();
-			f.close();
+			PrintWriter outputFile = new PrintWriter(username + ".txt");
+			outputFile.println(username);
+			outputFile.println(password);
+			outputFile.println(name);
+			outputFile.println(DOB);
+			outputFile.println(email);
+			outputFile.println(address);
+			outputFile.println(phoneNumber);
+			outputFile.println(insurance);
+			outputFile.println(securityQuestion);
+			outputFile.println(securityAnswer);
+			outputFile.println(balance);
+			outputFile.close();
 		}	
 		catch(IOException e)
 		{
