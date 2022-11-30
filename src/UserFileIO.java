@@ -52,6 +52,7 @@ public class UserFileIO
 			PrintWriter outputFile = new PrintWriter(username + ".txt");
 			outputFile.println(username);
 			outputFile.println(password);
+			outputFile.println(balance);
 			outputFile.println(name);
 			outputFile.println(DOB);
 			outputFile.println(email);
@@ -60,7 +61,6 @@ public class UserFileIO
 			outputFile.println(insurance);
 			outputFile.println(securityQuestion);
 			outputFile.println(securityAnswer);
-			outputFile.println(balance);
 			outputFile.close();
 		}	
 		catch(IOException e)
