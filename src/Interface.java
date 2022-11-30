@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 
 public class Interface
 {
- 
+  
 	public static void main(String[] args)
 	{
 		
