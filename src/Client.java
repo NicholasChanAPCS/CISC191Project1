@@ -34,7 +34,7 @@ public class Client implements Serializable
 	 */
 	Client(String newName, int newDOB, String newUsername, String newPassword, String newEmail, String newAddress,String newNumber, String newInsurance, String newSecurityAnswer)
 	{
-		name = newName; 
+		name = newName;  
 		DOB = newDOB;
 		username = newUsername;
 		password = newPassword;
