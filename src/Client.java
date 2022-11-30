@@ -10,17 +10,16 @@ import java.util.ArrayList;
 
 public class Client implements Serializable
 {
-	private String name;
-	private int DOB;
+	private static String name;
+	private static int DOB;
 	private static String username;
 	private static String password;
-	private String email; 
-	private String address;
-	private String phoneNumber;
-	private String insurance; //code boolean to check if has insurance and different to return insurance has, ask for insurance in scanner?
-	private String securityQuestion = " "; //maybe have one common question for everyone and save their answer
-	private String securityAnswer;
-	public int balance = 0;
+	private static String email; 
+	private static String address;
+	private static String phoneNumber;
+	private static String insurance; //code boolean to check if has insurance and different to return insurance has, ask for insurance in scanner?
+	private static String securityAnswer;
+	public static int balance = 0;
 	public static ArrayList<String> appointments = new ArrayList<String>();
 	public static ArrayList<String> usernames  = new ArrayList<String>();
 	
@@ -98,19 +97,25 @@ public class Client implements Serializable
 	public static void toFileIO(Client client)
 	{
 		try
-		{
-			FileOutputStream f = new FileOutputStream(new File(username + ".txt"));
-			ObjectOutputStream o = new ObjectOutputStream(f);
-			o.writeObject(client);
-			o.flush();
-			o.close();
-			f.close();
-		}	
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		
+        {
+            PrintWriter outputFile = new PrintWriter(username + ".txt"); 
+            outputFile.println(username);
+            outputFile.println(password);
+            outputFile.println(balance);
+            outputFile.println(name);
+            outputFile.println(DOB);
+            outputFile.println(email);
+            outputFile.println(address);
+            outputFile.println(phoneNumber);
+            outputFile.println(insurance);
+            outputFile.println(securityAnswer);
+            outputFile.close();
+
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
 
 	}
 	/*
@@ -119,22 +124,12 @@ public class Client implements Serializable
 	 */
 	
 	public static boolean checkUsername(String newUsername)
-	{
-		boolean taken = true;
-		for(int i = 0; i < usernames.size(); i++)
-		{
-			if(usernames.get(i) == newUsername)
-			{
-				return taken;
-			}
-			else
-			{
-				taken = false;
-				usernames.add(newUsername);
-			}
-		}		
-		return taken;
-	}
+    {
+        boolean exists;
+        File temp = new File(System.getProperty("user.dir")+ "/" + newUsername + ".txt");
+        exists = temp.exists();
+        return exists;
+    }
 
 	/* @Purpose: Have all values of client class printed out to console for user to read
 	 * @param: None

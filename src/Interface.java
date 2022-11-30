@@ -28,7 +28,7 @@ public class Interface
 		// user types 1 for new user. 2 for existing user.
 		Scanner input = new Scanner(System.in);
 		System.out.println("Type 1 for new user 2 for existing user.");
-		boolean correctInput = false;
+		boolean correctInput = false; 
 		do 
 		{
 			int userType = 0;
@@ -86,15 +86,16 @@ public class Interface
 				
 				input.nextLine();
 				System.out.println("Create username: ");
-					do 
-					{
-						user = input.nextLine();
-						if(Client.checkUsername(user) == true)
-						{
-							System.out.println("Username is taken, choose a different one");
-							user = input.next();
-						}
-					}while(Client.checkUsername(user) == false);
+                boolean exists = true;
+                do
+                {
+                    user = input.nextLine();
+                    if(Client.checkUsername(user) == true)
+                    {
+                    	System.out.println("Username taken, choose a different one");
+                    }
+
+                }while(Client.checkUsername(user) == true);
 					
 				input.nextLine();
 				System.out.println("Create password: ");
