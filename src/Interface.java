@@ -141,7 +141,7 @@ public class Interface
 					user = input.nextLine();
 					// find users file by using username.
 					// open users file get password and use it for login check
-					File userFile = new File("C:\\Users\\nicho\\git\\repository\\ClientPortal\\doc\\text.txt");
+					File userFile = new File(System.getProperty("user.dir")+ "/" + user + ".txt");
 					Scanner scan = null;
 					try
 					{
