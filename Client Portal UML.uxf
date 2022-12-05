@@ -25,6 +25,8 @@ Balance: int
 Client()
 checkUsername(): boolean
 toFileIO(): void
+returnBalance(): int
+modifyBalance(): void
 --
 Responsibilities
 - Construct a client
@@ -42,18 +44,14 @@ Responsibilities
     </coordinates>
     <panel_attributes>Purchase
 --
-advil: int
-medical tape: int
-acetaminophen: int
-asprin: int
-rubbing alcohol: int
-inhaler: int
-epipen: int
-band aids: int
+cart ArrayList&lt;Integer&gt;
+
 --
-buy(): void
+addToCart(): void
+checkOut(): void
+cartTotal(): int
 --
-- Allows clients to buy items add the 
+- Allows clients to buy items and the 
 balance will be added to their account</panel_attributes>
     <additional_attributes/>
   </element>

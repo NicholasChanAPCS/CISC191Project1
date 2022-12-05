@@ -1,13 +1,28 @@
+import java.util.ArrayList;
 
 public class Purchase extends Billing 
 {
-	int advil = 10;
-	int medicalTape = 5; 
-	int acetaminophen = 7;
-	int asprin = 11;
-	int rubbingAlcohol = 8;
-	int inhaler = 150;
-	int epipen = 650;
-	int bandAids = 5;
+	static ArrayList<Integer> cart = new ArrayList<Integer>();
+	
+	public static void addToCart(int item)
+	{
+		cart.add(item);
+	}
+	public static void checkOut()
+	{
+		for(int i = 0; i < cart.size(); i++)
+		{
+			addToBalance(cart.get(i));
+		}
+	}
+	public static int cartTotal()
+	{
+		int total = 0;
+		for(int i = 0; i < cart.size(); i++)
+		{
+			total += cart.get(i);
+		}
+		return total;
+	}
 
 }

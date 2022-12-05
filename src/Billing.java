@@ -10,5 +10,13 @@ public class Billing extends Client
 	{
 		return balance;
 	}
+	public static void addToBalance(int amount)
+	{
+		balance += amount;
+	}
+	public void subtractFromBalance(int amount)
+	{
+		balance -= amount;
+	}
 
 }

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 public class Client 
 {
 	private static String name;
@@ -74,7 +75,7 @@ public class Client
 	 * 
 	 * @Output: balance
 	 */
-	public int returnBalance()
+	public static int returnBalance()
 	{
 		return balance;
 	}
@@ -106,6 +107,25 @@ public class Client
             e.printStackTrace();
         }
 
+	}
+	public static void modifyBalance(String newUsername) throws FileNotFoundException
+	{
+		 File input = new File(System.getProperty("user.dir")+ "/" + newUsername + ".txt");
+	        File temp = new File("temp.txt");
+	        Scanner sc = new Scanner(input); 
+	        PrintWriter pw = new PrintWriter(temp); 
+	        sc.nextLine();
+	        sc.nextLine();
+		    int i = sc.nextInt();
+	        i = balance;
+	        pw.print(i);
+	        while(sc.hasNextLine())
+	            pw.println(sc.nextLine());
+
+	        sc.close();
+	        pw.close();
+	        input.delete();
+	        temp.renameTo(input);      
 	}
 	/*
 	 * @purpose: checks if username is already taken

@@ -19,6 +19,14 @@ public class Interface
 		String address;
 		String insurance;
 		String answer;
+		int advil = 10;
+		int medicalTape = 5; 
+		int acetaminophen = 7;
+		int aspirin = 11;
+		int rubbingAlcohol = 8;
+		int inhaler = 150;
+		int epipen = 650;
+		int bandAids = 5;
 		// TODO Make user interface to set client info
 		// options for new user or existing user interface
 		// user types 1 for new user. 2 for existing user.
@@ -92,7 +100,7 @@ public class Interface
 
                 }while(Client.checkUsername(user) == true);
 					
-				input.nextLine();
+				
 				System.out.println("Create password: ");
 			    password = input.nextLine();
 				System.out.println("Enter address: ");
@@ -115,6 +123,88 @@ public class Interface
 				answer = input.nextLine();
 				Client newUser = new Client(name, DOB, user, password, email, address, number, insurance, answer);
 				Client.toFileIO(newUser);
+				System.out.println("If you would like to purchase items type 1. Type 2 to end.");
+				int userIn = input.nextInt();
+				if(userIn == 1)
+				{
+					System.out.println("Type the corresponding number to the item you would like to buy."
+							+ "\n1. Advil: $10 "
+							+ "\n2. Medical tape: $5"
+							+ "\n3. Acetaminophen: $7"
+							+ "\n4. Aspirin: $11"
+							+ "\n5. Rubbing alcohol: $8"
+							+ "\n6. Inhaler: $150"
+							+ "\n7. Epipen: $650"
+							+ "\n8. Band-Aid: $5");
+					do
+					{
+						userIn = input.nextInt();
+						if(userIn == 1)
+						{
+							Purchase.addToCart(advil);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 2)
+						{
+							Purchase.addToCart(medicalTape);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 3)
+						{
+							Purchase.addToCart(acetaminophen);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 4)
+						{
+							Purchase.addToCart(aspirin);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 5)
+						{
+							Purchase.addToCart(rubbingAlcohol);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 6)
+						{
+							Purchase.addToCart(inhaler);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 7)
+						{
+							Purchase.addToCart(epipen);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if (userIn == 8)
+						{
+							Purchase.addToCart(bandAids);
+							System.out.println("Item added to cart.");
+							System.out.println("To add more type the number of the item. To checkout type 0. ");
+						}
+						else if(userIn == 0)
+						{
+							System.out.println("$"+ Purchase.cartTotal() + " added to balance due.");
+							Purchase.checkOut();
+							System.out.println("Total balance due is $" + Client.returnBalance());
+							try
+							{
+								Client.modifyBalance(user);
+							}
+							catch (FileNotFoundException e)
+							{
+								e.printStackTrace();
+							}
+							input.close();
+						}
+					}while(userIn != 0);
+					}
+				
 				input.close();
 				
 			}
@@ -165,9 +255,95 @@ public class Interface
 					password = input.nextLine();
 					//check to see if username and password is correct and matches
 					if(user.equals(username) && password.equals(pass))
-					{
-						System.out.println("You owe us " + moneyOwed);
-						correctInput = true;
+					{		
+						System.out.println("Type 1 to purchase items or 2 to recieve balance");
+						int ans = keyboard.nextInt();
+						if(ans == 1)
+						{
+							int userInput;
+							System.out.println("Type the corresponding number to the item you would like to buy."
+									+ "\n1. Advil: $10 "
+									+ "\n2. Medical tape: $5"
+									+ "\n3. Acetaminophen: $7"
+									+ "\n4. Aspirin: $11"
+									+ "\n5. Rubbing alcohol: $8"
+									+ "\n6. Inhaler: $150"
+									+ "\n7. Epipen: $650"
+									+ "\n8. Band-Aid: $5");
+							do
+							{
+								userInput = input.nextInt();
+								if(userInput == 1)
+								{
+									Purchase.addToCart(advil);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput == 2)
+								{
+									Purchase.addToCart(medicalTape);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput == 3)
+								{
+									Purchase.addToCart(acetaminophen);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput== 4)
+								{
+									Purchase.addToCart(aspirin);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput == 5)
+								{
+									Purchase.addToCart(rubbingAlcohol);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput == 6)
+								{
+									Purchase.addToCart(inhaler);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput == 7)
+								{
+									Purchase.addToCart(epipen);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if (userInput == 8)
+								{
+									Purchase.addToCart(bandAids);
+									System.out.println("Item added to cart.");
+									System.out.println("To add more type the number of the item. To checkout type 0. ");
+								}
+								else if(userInput == 0)
+								{
+									System.out.println("$"+ Purchase.cartTotal() + " added to balance due.");
+									Purchase.checkOut();
+									System.out.println("Total balance due is $" + Client.returnBalance());
+									try
+									{
+										Client.modifyBalance(user);
+									}
+									catch (FileNotFoundException e)
+									{
+										e.printStackTrace();
+									}
+									input.close();
+								}
+							}while(userInput != 0);
+						}
+						if(ans == 2)
+						{
+							System.out.println("You owe us " + moneyOwed);
+							correctInput = true;
+						}
+						
 					}
 					//tell the user the username and or password doesnt match and try again.
 					else
