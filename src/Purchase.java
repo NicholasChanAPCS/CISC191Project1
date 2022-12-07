@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Purchase extends Billing 
+public class Purchase extends Balance
 {
 	static ArrayList<Integer> cart = new ArrayList<Integer>();
 	

@@ -75,9 +75,24 @@ public class Client
 	 * 
 	 * @Output: balance
 	 */
-	public static int returnBalance()
+	public static String returnBalance(String newUsername)
 	{
-		return balance;
+		String moneyOwed;
+		File userFile = new File(System.getProperty("user.dir")+ "/" + newUsername + ".txt");
+		Scanner scan = null;
+		try
+		{
+			scan = new Scanner (userFile);
+		}
+		catch (FileNotFoundException e)
+		{
+			// file not found
+			e.printStackTrace();
+		}
+		scan.nextLine();
+		scan.nextLine();
+		moneyOwed = scan.nextLine();		
+		return moneyOwed;
 	}
 	
 	// make a file per user named after user. username + ".txt"

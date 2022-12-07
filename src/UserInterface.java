@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
  
 
-public class Interface
+public class UserInterface 
 {
    
 	public static void main(String[] args)
@@ -19,14 +19,7 @@ public class Interface
 		String address;
 		String insurance;
 		String answer;
-		int advil = 10;
-		int medicalTape = 5; 
-		int acetaminophen = 7;
-		int aspirin = 11;
-		int rubbingAlcohol = 8;
-		int inhaler = 150;
-		int epipen = 650;
-		int bandAids = 5;
+		
 		// TODO Make user interface to set client info
 		// options for new user or existing user interface
 		// user types 1 for new user. 2 for existing user.
@@ -138,52 +131,53 @@ public class Interface
 							+ "\n8. Band-Aid: $5");
 					do
 					{
+						Items item = new Items();
 						userIn = input.nextInt();
 						if(userIn == 1)
 						{
-							Purchase.addToCart(advil);
+							Purchase.addToCart(item.getAdvil());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if(userIn == 2)
 						{
-							Purchase.addToCart(medicalTape);
+							Purchase.addToCart(item.getMedicalTape());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if(userIn == 3)
 						{
-							Purchase.addToCart(acetaminophen);
+							Purchase.addToCart(item.getAcetaminophen());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if(userIn == 4)
 						{
-							Purchase.addToCart(aspirin);
+							Purchase.addToCart(item.getAspirin());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if(userIn == 5)
 						{
-							Purchase.addToCart(rubbingAlcohol);
+							Purchase.addToCart(item.getRubbingAlcohol());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if(userIn == 6)
 						{
-							Purchase.addToCart(inhaler);
+							Purchase.addToCart(item.getInhaler());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if(userIn == 7)
 						{
-							Purchase.addToCart(epipen);
+							Purchase.addToCart(item.getEpipen());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
 						else if (userIn == 8)
 						{
-							Purchase.addToCart(bandAids);
+							Purchase.addToCart(item.getBandAids());
 							System.out.println("Item added to cart.");
 							System.out.println("To add more type the number of the item. To checkout type 0. ");
 						}
@@ -191,7 +185,7 @@ public class Interface
 						{
 							System.out.println("$"+ Purchase.cartTotal() + " added to balance due.");
 							Purchase.checkOut();
-							System.out.println("Total balance due is $" + Client.returnBalance());
+							System.out.println("Total balance due is $" + Client.returnBalance(user));
 							try
 							{
 								Client.modifyBalance(user);
@@ -272,52 +266,53 @@ public class Interface
 									+ "\n8. Band-Aid: $5");
 							do
 							{
+								Items item = new Items();
 								userInput = input.nextInt();
 								if(userInput == 1)
 								{
-									Purchase.addToCart(advil);
+									Purchase.addToCart(item.getAdvil());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if(userInput == 2)
 								{
-									Purchase.addToCart(medicalTape);
+									Purchase.addToCart(item.getMedicalTape());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if(userInput == 3)
 								{
-									Purchase.addToCart(acetaminophen);
+									Purchase.addToCart(item.getAcetaminophen());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if(userInput== 4)
 								{
-									Purchase.addToCart(aspirin);
+									Purchase.addToCart(item.getAspirin());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if(userInput == 5)
 								{
-									Purchase.addToCart(rubbingAlcohol);
+									Purchase.addToCart(item.getRubbingAlcohol());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if(userInput == 6)
 								{
-									Purchase.addToCart(inhaler);
+									Purchase.addToCart(item.getInhaler());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if(userInput == 7)
 								{
-									Purchase.addToCart(epipen);
+									Purchase.addToCart(item.getEpipen());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
 								else if (userInput == 8)
 								{
-									Purchase.addToCart(bandAids);
+									Purchase.addToCart(item.getBandAids());
 									System.out.println("Item added to cart.");
 									System.out.println("To add more type the number of the item. To checkout type 0. ");
 								}
@@ -325,7 +320,7 @@ public class Interface
 								{
 									System.out.println("$"+ Purchase.cartTotal() + " added to balance due.");
 									Purchase.checkOut();
-									System.out.println("Total balance due is $" + Client.returnBalance());
+									System.out.println("Total balance due is $" + Client.returnBalance(user));
 									try
 									{
 										Client.modifyBalance(user);

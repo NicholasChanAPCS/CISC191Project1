@@ -1,5 +1,5 @@
 
-public class Billing extends Client
+public class Balance extends Client
 {
 	public void payBill(int number)
 	{
