@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Client 
 {
 	private static String name;
-	private static int DOB;
+	private static String DOB;
 	private static String username;
 	private static String password;
 	private static String email; 
@@ -22,7 +22,7 @@ public class Client
 	 * 
 	 * @Output: No output
 	 */
-	Client(String newName, int newDOB, String newUsername, String newPassword, String newEmail, String newAddress,String newNumber, String newInsurance, String newSecurityAnswer)
+	Client(String newName, String newDOB, String newUsername, String newPassword, String newEmail, String newAddress,String newNumber, String newInsurance, String newSecurityAnswer)
 	{
 		name = newName;    
 		DOB = newDOB;
@@ -68,6 +68,10 @@ public class Client
 	public String getSecurityAnswer()
 	{
 		return securityAnswer;
+	}
+	public static int getBalance()
+	{
+		return balance;
 	}
 	
 	/* @Purpose: returns balance due from client
@@ -123,34 +127,36 @@ public class Client
         }
 
 	}
-	public static void modifyBalance(String newUsername) throws FileNotFoundException
+	public static String modifyBalance(String newUsername, int newBalance) throws IOException
 	{
-		 File input = new File(System.getProperty("user.dir")+ "/" + newUsername + ".txt");
-	        File temp = new File("temp.txt");
-	        Scanner sc = new Scanner(input); 
-	        PrintWriter pw = new PrintWriter(temp); 
-	        sc.nextLine();
-	        sc.nextLine();
-		    int i = sc.nextInt();
-	        i = balance;
-	        pw.print(i);
-	        while(sc.hasNextLine())
-	            pw.println(sc.nextLine());
-
-	        sc.close();
-	        pw.close();
-	        input.delete();
-	        temp.renameTo(input);      
+		String newUserDebt = String.valueOf((Client.getBalance() + newBalance));
+		 File input = new File(System.getProperty("user.dir")+ "/" + newUsername + ".txt");	        
+	        Scanner scan = new Scanner (input);
+			StringBuffer buffer = new StringBuffer();
+			while (scan.hasNextLine()) 
+			{
+		         buffer.append(scan.nextLine()+System.lineSeparator());
+			}
+			String fileContents = buffer.toString();
+			scan.close();
+		    String oldLine = String.valueOf(Client.getBalance());
+		    String newLine = newUserDebt;
+		    fileContents = fileContents.replaceAll(oldLine, newLine);
+		    FileWriter writer = new FileWriter(input);
+		    writer.append(fileContents);
+		    writer.flush();
+			return newLine;
+	              
 	}
 	/*
 	 * @purpose: checks if username is already taken
 	 * @param: username
 	 */
 	
-	public static boolean checkUsername(String newUsername)
+	public static boolean checkLogin(String user)
     {
         boolean exists;
-        File temp = new File(System.getProperty("user.dir")+ "/" + newUsername + ".txt");
+        File temp = new File(System.getProperty("user.dir")+ "/" + user + ".txt");
         exists = temp.exists();
         return exists;
     }

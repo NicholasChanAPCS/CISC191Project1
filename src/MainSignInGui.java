@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import javax.swing.*;
 
 public class MainSignInGui implements ActionListener
@@ -10,6 +14,7 @@ public class MainSignInGui implements ActionListener
 	{
 		new MainSignInGui();
 	}
+	private String user;
 	private JPanel panel;
 	private JFrame frame;
 	private JTextField userNameText;
@@ -80,6 +85,10 @@ public class MainSignInGui implements ActionListener
 		frame.setLocationRelativeTo(null);
 		
 	}
+	public JTextField getUsernameText()
+	{
+		return userNameText;
+	}
 	
 	// gui panel
 	public void guiPanel() 
@@ -97,18 +106,33 @@ public class MainSignInGui implements ActionListener
 		{
 			// TODO Auto-generated method stub
 			//get username and password
-			String user = userNameText.getText();
+			user = userNameText.getText();
 			String password = passwordText.getText();
 			//print out in console user and password values
 			System.out.println(user + ", " + password);
 		
 			//if username and password both match a file with them then success and log them in
-			if(user.equals("Nick") && password.equals("notnick")) 
+			File userFile = new File(System.getProperty("user.dir")+ "/" + user + ".txt");
+			Scanner scan = null;
+			try
+			{
+				scan = new Scanner (userFile);
+			}
+			catch (FileNotFoundException ex)
+			{
+				// file not found
+				ex.printStackTrace();
+			}
+			//scans files lines for username password
+		    String username = scan.nextLine();
+		    String pass = scan.nextLine(); // looks at selected file in scan
+			if(user.equals(username) && password.equals(pass)) 
 			{
 				//successLabel.setText("Login Successful");
 				JOptionPane.showMessageDialog(frame, "Login successful");
 				frame.dispose();
-				new UserDashboardGui();
+				TransitionGUI.setUser(user);
+				new TransitionGUI();
 			}
 			// if username and or password dont match records wipe text field, tell them its wrong, and make them try again
 			else 
@@ -122,6 +146,7 @@ public class MainSignInGui implements ActionListener
 		//close Sign in GUI. open new user sign up GUI
 		else if(e.getSource() == newUserButton)
 		{
+			
 			frame.dispose();
 			new SignUpGui();
 		}

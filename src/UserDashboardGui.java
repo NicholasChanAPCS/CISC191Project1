@@ -1,11 +1,17 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import javax.swing.*;
 
-public class UserDashboardGui
+public class UserDashboardGui 
 {
+	private static String user;
 	private JFrame frame;
 	private JPanel panel;
 	private JTextField userPaymentText;
@@ -19,8 +25,9 @@ public class UserDashboardGui
 	private final int TEXTFIELD_HEIGHT = 25;
 	private final int BUTTON_WIDTH = 80;
 	private final int BUTTON_HEIGHT = 25;
-	private int userDebt = -150;
-	private int newUserDebt, userPayment;
+	private String userDebt;
+	private String newUserDebt;
+	private int userPayment;
 	 
 	private ButtonListener trackButton = new ButtonListener();
 	
@@ -28,9 +35,21 @@ public class UserDashboardGui
 	{
 		new UserDashboardGui();
 	}
-	
+
 	public UserDashboardGui() 
 	{
+		createPanel();
+		frame = new JFrame();
+		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		frame.add(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Dashboard");
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	public UserDashboardGui(String user) 
+	{
+		this.user= user;
 		createPanel();
 		frame = new JFrame();
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -52,6 +71,10 @@ public class UserDashboardGui
 		submitPaymentButton();
 	}
 	
+	public static void setUser(String newUser)
+	{
+		user = newUser;
+	}
 	private void moneyOwedLabel() 
 	{
 		moneyOwedLabel = new JLabel("Amount Owed");
@@ -61,6 +84,20 @@ public class UserDashboardGui
 	
 	private void moneyAmountOwedLabel() 
 	{
+		File userFile = new File(System.getProperty("user.dir")+ "/" + user + ".txt");
+		Scanner scan = null;
+		try
+		{
+			scan = new Scanner (userFile);
+		}
+		catch (FileNotFoundException e)
+		{
+			// file not found
+			e.printStackTrace();
+		}
+	    scan.nextLine();
+	    scan.nextLine(); 
+	    userDebt = scan.nextLine();
 		moneyAmountOwedLabel = new JLabel("$" + userDebt);
 		moneyAmountOwedLabel.setBounds(100, 20, TEXTFIELD_WIDTH, TEXTFIELD_HEIGHT);
 		panel.add(moneyAmountOwedLabel);
@@ -104,9 +141,36 @@ public class UserDashboardGui
 	}
 	
 	// updated debt amount from the payment
-	public int newUserDebt() 
-	{
-		newUserDebt = (userDebt + userPayment);
+	public String payUserDebt() throws IOException 
+	{			
+		newUserDebt = String.valueOf((Integer.valueOf(userDebt) - userPayment));
+		File userFile = new File(System.getProperty("user.dir")+ "/" + user + ".txt");
+		Scanner scan = null;
+		try
+		{
+			scan = new Scanner (userFile);
+			StringBuffer buffer = new StringBuffer();
+			while (scan.hasNextLine()) 
+			{
+		         buffer.append(scan.nextLine()+System.lineSeparator());
+			}
+			String fileContents = buffer.toString();
+			scan.close();
+		    String oldLine = userDebt;
+		    String newLine = newUserDebt;
+		    fileContents = fileContents.replaceAll(oldLine, newLine);
+		    FileWriter writer = new FileWriter(userFile);
+		    writer.append(fileContents);
+		    writer.flush();
+			
+		}
+		catch (FileNotFoundException e)
+		{
+			// file not found
+			e.printStackTrace();
+		}
+	
+		
 		return newUserDebt;
 	}
 	
@@ -185,8 +249,28 @@ public class UserDashboardGui
 						// set moneyAmountOwed to the new balance after payment.
 						userPayment = Integer.parseInt(userPaymentText.getText());
 						userPaymentText.setText(null);
-						moneyAmountOwedLabel.setText("$" + newUserDebt());	
-						JOptionPane.showMessageDialog(frame, "payment sent successfully of " + userPayment + "\nNew Balance " + newUserDebt);
+						try
+						{
+							if(userPayment < Integer.valueOf(userDebt))
+							{
+								moneyAmountOwedLabel.setText("$" + payUserDebt());
+								JOptionPane.showMessageDialog(frame, "payment sent successfully of " + userPayment + "\nNew Balance " + newUserDebt);
+								frame.dispose();
+								new UserDashboardGui();
+							}
+							else if(userPayment > Integer.valueOf(userDebt))
+							{
+								JOptionPane.showMessageDialog(frame, "payment too large, can not have negative debt");
+								
+							}
+							
+						}
+						catch (IOException e1)
+						{
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}	
+						
 					}
 					else 
 					{

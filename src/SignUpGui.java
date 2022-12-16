@@ -8,13 +8,13 @@ import javax.swing.*;
 //import javax.swing.text.JTextComponent;
 //import javax.swing.SpringLayout;
 
-public class SignUpGui
+public class SignUpGui 
 { 
 	private JFrame frame;
 	private JPanel panel;
 	//nameText = first and last name
 	//private String[] JTextField; {"userNameText", "emailText", "nameText", "dobText", "addressText", "insuranceText"};
-	private JTextField userNameText, emailText, nameText, dobText, addressText, insuranceText, numberText;
+	private JTextField userNameText, emailText, nameText, dobText, addressText, insuranceText, numberText, answerText;
 	private JLabel usernameLabel, passwordLabel, successLabel, emailLabel, nameLabel, dobLabel, addressLabel, insuranceLabel, securityLabel,  securityAnswerLabel, availabilityLabel, numberLabel;
 	private JPasswordField passwordPassword, securityAnswerPassword;
 	private JButton signUpButton, returnToMainButton;
@@ -256,14 +256,23 @@ public class SignUpGui
 				//get username and password
 				String user = userNameText.getText();
 				String password = passwordPassword.getText();
+				String email = emailText.getText();
+				String name = nameText.getText();
+				String DOB = dobText.getText();
+				String number = numberText.getText();
+				String address = addressText.getText();
+				String insurance = insuranceText.getText();
+				String answer = securityLabel.getText();
 				//print out in console user and password values
 				System.out.println(user + ", " + password);
-				//if username and password both match a file with them then success and log them in
-				if(user.equals("Nick") && password.equals("notnick")) 
+				if(Client.checkLogin(user) == false) 
 				{
-					userNameText.setText(null);
-					passwordPassword.setText(null);
-					JOptionPane.showMessageDialog(frame, "Login Successful");
+					JOptionPane.showMessageDialog(frame, "Sign up Successful");
+					Client newUser = new Client(name, DOB, user, password, email, address, number, insurance, answer);
+					Client.toFileIO(newUser);
+					frame.dispose();
+					TransitionGUI.setUser(user);
+					new TransitionGUI();
 					//Close SignUp Open user's dash-board GUI
 				}
 				// if user name and or password dont match records wipe text field, tell them its wrong, and make them try again
@@ -271,7 +280,7 @@ public class SignUpGui
 				{
 					userNameText.setText(null);
 					passwordPassword.setText(null);
-					JOptionPane.showMessageDialog(frame, "Incorrect Password and or Username");
+					JOptionPane.showMessageDialog(frame, "Username is taken, try another");
 				}
 			}
 			else if(e.getSource() == returnToMainButton) 

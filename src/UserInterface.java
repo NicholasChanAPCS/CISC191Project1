@@ -2,17 +2,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
  
 
 public class UserInterface 
 {
    
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		
 		String email;
 		String name;
-		int DOB = 0;
+		String DOB = null;
 		String user;
 		String password;
 		String number = null;
@@ -71,7 +72,7 @@ public class UserInterface
 				{
 					try
 					{
-					    DOB = input.nextInt();
+					    DOB = input.nextLine();
 						userInput = true;
 					}
 					catch(InputMismatchException e)
@@ -86,12 +87,12 @@ public class UserInterface
                 do
                 {
                     user = input.nextLine();
-                    if(Client.checkUsername(user) == true)
+                    if(Client.checkLogin(user) == true)
                     {
                     	System.out.println("Username taken, choose a different one");
                     }
 
-                }while(Client.checkUsername(user) == true);
+                }while(Client.checkLogin(user) == true);
 					
 				
 				System.out.println("Create password: ");
@@ -183,17 +184,19 @@ public class UserInterface
 						}
 						else if(userIn == 0)
 						{
+							int total = Purchase.cartTotal();
 							System.out.println("$"+ Purchase.cartTotal() + " added to balance due.");
 							Purchase.checkOut();
-							System.out.println("Total balance due is $" + Client.returnBalance(user));
+							
 							try
 							{
-								Client.modifyBalance(user);
+								Client.modifyBalance(user, total);
 							}
 							catch (FileNotFoundException e)
 							{
 								e.printStackTrace();
 							}
+							System.out.println("Total balance due is $" + Client.returnBalance(user));
 							input.close();
 						}
 					}while(userIn != 0);
@@ -320,16 +323,16 @@ public class UserInterface
 								{
 									System.out.println("$"+ Purchase.cartTotal() + " added to balance due.");
 									Purchase.checkOut();
-									System.out.println("Total balance due is $" + Client.returnBalance(user));
 									try
 									{
-										Client.modifyBalance(user);
+										Client.modifyBalance(user, Client.getBalance());
 									}
 									catch (FileNotFoundException e)
 									{
 										e.printStackTrace();
 									}
 									input.close();
+									System.out.println("Total balance due is $" + Client.returnBalance(user));
 								}
 							}while(userInput != 0);
 						}
